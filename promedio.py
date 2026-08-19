@@ -4,9 +4,9 @@ def calcularPromedio(nota1, nota2, nota3):
 
 def determinarEstado(promedio):
     if promedio >= 3:
-        return "Aprobó"
+        return "Aprobo"
     else:
-        return "Reprobó"
+        return "Reprobo"
 
 
 def main():
