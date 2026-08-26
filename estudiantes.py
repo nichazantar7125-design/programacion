@@ -24,7 +24,16 @@ def main():
     if est is not None:
         mostrar(est)
 
-        cambiar = input("
+        cambiar = input("¿Desea cambiar la nota? (s/n): ")
+
+        if cambiar.lower() == "s":
+            nueva_nota = float(input("Digite la nueva nota: "))
+
+            est["nota"] = nueva_nota
+
+            print("\nNota actualizada correctamente.")
+            mostrar(est)
+            
     else:
         print("Codigo no encontrado")
 
