@@ -1,3 +1,9 @@
+def cambiarNota(estudiante, nota):
+    if(nota < 0 or nota > 5):
+        print("ERROR: No se puede cambiar la nota")
+    else:
+        estudiante['nota'] = nota
+
 def buscar(estudiantes, valor):
     for estudiante in estudiantes:
         if estudiante['codigo'] == valor:
@@ -23,20 +29,11 @@ def main():
     est= buscar(estudiantes,cod)
     if est is not None:
         mostrar(est)
-
-        cambiar = input("¿Desea cambiar la nota? (s/n): ")
-
-        if cambiar.lower() == "s":
-            nueva_nota = float(input("Digite la nueva nota: "))
-
-            est["nota"] = nueva_nota
-
-            print("\nNota actualizada correctamente.")
-            mostrar(est)
-            
+        nuevaNota = float(input("Nueva nota: "))
+        cambiarNota(est, nuevaNota)
+        print("**********")
+        mostrar(est)
     else:
         print("Codigo no encontrado")
-
-
 
 main()
