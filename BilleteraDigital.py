@@ -74,3 +74,6 @@ print("Compras exitosas:", billetera._compras_exitosas)
 print("Estado:", billetera.estado())
 print("Compra de 300000:", billetera.comprar(300000))
 
+# INTEGRANTES
+# Nicole Isabela Chazatar Inagan
+# Ashlynn Nicole Santander Achicanoy
