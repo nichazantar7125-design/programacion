@@ -1,28 +1,23 @@
 import tkinter as tk
 from tkinter import messagebox
-    
-def sumar():
-    a = int(txtNumUno.get())
-    b = int(txtNumDos.get())
-    lblResultado.config(text=f"Resultado: {a+b}")
+from functools import partial
 
-def restar():
+def operar(operacion):
     a = int(txtNumUno.get())
     b = int(txtNumDos.get())
-    lblResultado.config(text=f"Resultado: {a-b}")
-
-def multiplicar():
-    a = int(txtNumUno.get())
-    b = int(txtNumDos.get())
-    lblResultado.config(text=f"Resultado: {a*b}")
-
-def dividir():
-    a = int(txtNumUno.get())
-    b = int(txtNumDos.get())
-    if b == 0:
-        messagebox.showerror(message="No se puede dividir entre 0")
-    else:
-        lblResultado.config(text=f"Resultado: {a/b}")
+    if operacion == "+":
+        res = a + b
+    elif operacion == "-":
+        res = a - b
+    elif operacion == "*":
+        res = a * b
+    elif operacion == "/":
+        if b == 0:
+            messagebox.showerror(message="No se puede dividir por cero (0)")
+            return
+        res = a / b
+       
+    lblResultado.config(text=f"Resultado: {res}")
 
 ventana = tk.Tk()
 ventana.title("Calculadora POO")
@@ -31,15 +26,15 @@ ventana.resizable(False, False)
 
 lblNumUno = tk.Label(ventana, text="Numero Uno", font=100)
 lblNumDos = tk.Label(ventana, text="Numero Dos", font=100)
-lblResultado = tk.Label(ventana, text="Resultado:", font=200, background="Green", padx=20, pady=5, fg="white")
+lblResultado = tk.Label(ventana, text="Resultado:", font=200, background="green", padx=20, pady=5, fg="white")
 
 txtNumUno = tk.Entry(ventana, width=25)
 txtNumDos = tk.Entry(ventana, width=25)
 
-btnSumar = tk.Button(ventana, text="Sumar", width=16, command=sumar)
-btnRestar = tk.Button(ventana, text="Restar", width=16, command=restar)
-btnMultiplicar = tk.Button(ventana, text="Multiplicar", width=16, command=multiplicar)
-btnDividir = tk.Button(ventana, text="Dividir", width=16, command=dividir)
+btnSumar = tk.Button(ventana, text="Sumar", width=15, command=partial(operar,"+"))
+btnRestar = tk.Button(ventana, text="Resta", width=15, command=partial(operar,"-"))
+btnMultiplicar = tk.Button(ventana, text="Multiplicación", width=15, command=partial(operar,"*"))
+btnDividir = tk.Button(ventana, text="División", width=15, command=partial(operar,"/"))
 
 lblNumUno.grid(row=0, column=0, padx=5, pady=5)
 txtNumUno.grid(row=0, column=1, padx=5, pady=5)
