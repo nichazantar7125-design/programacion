@@ -1,6 +1,8 @@
 import random
 import tkinter as tk
 
+# Nicole Isabela Chazatar Inagan y Ashlynn Nicole Santander Achicanoy
+
 CONCEPTOS = {
     "Clase": ("📋", "#FFB3C1"), "Objeto": ("📦", "#FFD6A5"), "Herencia": ("🌳", "#B5EAD7"),
     "Polimorfismo": ("🎭", "#C7B8FF"), "Encapsulamiento": ("🔒", "#A0C4FF"),
@@ -9,7 +11,6 @@ CONCEPTOS = {
 }
 NIVELES = {"Fácil": (3, 4, 12), "Normal": (4, 4, 14), "Difícil": (4, 5, 16)}
 FONDO, TEXTO, OCULTA, AMARILLO, VERDE, ROJO = "#12142B", "#EDEFFF", "#3B4488", "#FFD43B", "#5EE08A", "#FF7B7B"
-
 
 class Carta:
     def __init__(self, concepto):
@@ -21,7 +22,6 @@ class Carta:
     def coincide_con(self, otra):
         return self.concepto == otra.concepto
 
-
 class Tablero:
     def __init__(self, filas, columnas):
         self.conceptos = random.sample(list(CONCEPTOS), filas * columnas // 2)
@@ -31,11 +31,9 @@ class Tablero:
     def completo(self):
         return all(c.estado == "emparejada" for c in self.cartas)
 
-
 class Jugador:
     def __init__(self, nombre):
         self.nombre, self.parejas = nombre, 0
-
 
 class JuegoMemoria:
     def __init__(self, modo, nivel):
@@ -92,17 +90,14 @@ class JuegoMemoria:
         elif self.solitario and self.intentos == self.max_intentos:
             self.resultado = "derrota"
 
-
 def etiqueta(padre, texto="", tam=11, color=TEXTO):
     return tk.Label(padre, text=texto, bg=FONDO, fg=color, font=("Helvetica", tam, "bold"))
 
-
 def boton(padre, texto, comando):
-    b = tk.Label(padre, text=texto, bg=AMARILLO, fg="#2B2400", cursor="hand2",
+    b = tk.Label(padre, text=texto, bg=AMARILLO, fg="#2B2400",
                  font=("Helvetica", 12, "bold"), padx=20, pady=6)
     b.bind("<Button-1>", lambda e: comando())
     return b
-
 
 class MenuInicio(tk.Frame):
     def __init__(self, raiz, al_jugar):
@@ -120,7 +115,6 @@ class MenuInicio(tk.Frame):
                                font=("Helvetica", 11, "bold"), padx=14, pady=5, bd=0,
                                highlightthickness=0).pack(side="left", padx=3)
         boton(self, "▶  JUGAR", lambda: al_jugar(self.modo.get(), self.nivel.get())).pack(pady=24)
-
 
 class PantallaJuego(tk.Frame):
     def __init__(self, raiz, juego, al_menu):
@@ -212,7 +206,6 @@ class PantallaJuego(tk.Frame):
             texto = f"¡Empate! Cada jugador encontró {a[0].parejas} parejas"
         self.decir(texto, ROJO if j.resultado == "derrota" else VERDE)
 
-
 class Aplicacion(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -232,7 +225,6 @@ class Aplicacion(tk.Tk):
 
     def jugar(self, modo, nivel):
         self.mostrar(PantallaJuego(self, JuegoMemoria(modo, nivel), self.menu))
-
 
 if __name__ == "__main__":
     Aplicacion().mainloop()
